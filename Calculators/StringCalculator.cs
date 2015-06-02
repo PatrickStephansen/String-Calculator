@@ -8,7 +8,7 @@ namespace Calculators
         public static int Add(string numbers)
         {
             if (string.IsNullOrWhiteSpace(numbers)) return 0;
-            return numbers.Split(',').Sum(number => int.Parse(number));
+            return numbers.Split(',','\n').Sum(number => int.Parse(number));
         }
     }
 }
