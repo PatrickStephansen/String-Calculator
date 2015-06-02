@@ -13,8 +13,9 @@ namespace Tests
             Assert.That(StringCalculator.Add(string.Empty), Is.EqualTo(0));
         }
 
-        [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfSingleNumbers")]
-        public void Add_ReturnsCorrectResultsForSingleNumbers(string input, int expectedOutput)
+        [TestCaseSource(typeof(StringCalculatorTestCases), "AdditionOfSingleNumbers")]
+        [TestCaseSource(typeof(StringCalculatorTestCases), "AdditionOfTwoNumbers")]
+        public void Add_ReturnsExpectedResults(string input, int expectedOutput)
         {
             Assert.That(StringCalculator.Add(input), Is.EqualTo(expectedOutput));
         }
@@ -36,6 +37,26 @@ namespace Tests
                 yield return new TestCaseData("-2", -2);
                 yield return new TestCaseData("-10", -10);
                 yield return new TestCaseData("-2147483648", -2147483648);
+            }
+        }
+
+        public static IEnumerable<TestCaseData> AdditionOfTwoNumbers
+        {
+            get
+            {
+                yield return new TestCaseData("0,0", 0);
+                yield return new TestCaseData("0,1", 1);
+                yield return new TestCaseData("1,0", 1);
+                yield return new TestCaseData("0,-1", -1);
+                yield return new TestCaseData("-1,0", -1);
+                yield return new TestCaseData("1,1", 2);
+                yield return new TestCaseData("-1,-1", -2);
+                yield return new TestCaseData("-1,1", 0);
+                yield return new TestCaseData("1,-1", 0);
+                yield return new TestCaseData("10,-1", 9);
+                yield return new TestCaseData("2,1", 3);
+                yield return new TestCaseData("-2,-2", -4);
+                yield return new TestCaseData("8721387,-23723", 8697664);
             }
         }
     }
