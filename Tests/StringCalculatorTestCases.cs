@@ -5,6 +5,10 @@ namespace Tests
 {
     internal static class StringCalculatorTestCases
     {
+        public static IEnumerable<TestCaseData> AdditionOfEmptyString
+        {
+            get { yield return new TestCaseData(string.Empty, 0); }
+        }
         public static IEnumerable<TestCaseData> AdditionOfSingleNumbers
         {
             get

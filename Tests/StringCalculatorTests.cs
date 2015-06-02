@@ -6,12 +6,7 @@ namespace Tests
     [TestFixture]
     class StringCalculatorTests
     {
-        [Test]
-        public void Add_ReturnsZeroForEmptyInput()
-        {
-            Assert.That(StringCalculator.Add(string.Empty), Is.EqualTo(0));
-        }
-
+        [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfEmptyString")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfSingleNumbers")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfTwoNumbers")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfMultipleNumbers")]
