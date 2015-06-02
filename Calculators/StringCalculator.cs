@@ -1,19 +1,32 @@
 ﻿
+using System;
 using System.Linq;
 
 namespace Calculators
 {
     public class StringCalculator
     {
+        private const string DelimiterStartIndicator = "//";
+        private const string DelimiterEndIndicator = "\n";
+
         public static int Add(string numbers)
         {
             if (string.IsNullOrWhiteSpace(numbers)) return 0;
-            if (numbers.StartsWith("//"))
+            string[] delimiters;
+
+            if (numbers.StartsWith(DelimiterStartIndicator))
             {
-                var delimiter = numbers.Skip(2).First();
-                return numbers.Substring(4).Split(delimiter).Sum(number => int.Parse(number));
+                var delimiterEndIndex = numbers.IndexOf(DelimiterEndIndicator);
+                var delimiterLength = delimiterEndIndex - DelimiterStartIndicator.Length;
+                delimiters = new[]{numbers.Substring(DelimiterStartIndicator.Length, delimiterLength)};
+                numbers = numbers.Substring(delimiterEndIndex + DelimiterEndIndicator.Length);
             }
-            return numbers.Split(',','\n').Sum(number => int.Parse(number));
+            else
+            {
+                delimiters = new[] {",","\n"};
+            }
+            return numbers.Split(delimiters, StringSplitOptions.None)
+                          .Sum(number => int.Parse(number));
         }
     }
 }

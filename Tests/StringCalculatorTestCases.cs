@@ -72,6 +72,8 @@ namespace Tests
             {
                 yield return new TestCaseData("//;\n1;2", 3);
                 yield return new TestCaseData("//{\n12{18{-9", 21);
+                yield return new TestCaseData("//::\n43::6::78", 127);
+                yield return new TestCaseData("//<=>\n43<=>6<=>78<=>98", 225);
             }
         }
     }
