@@ -26,3 +26,6 @@ Thumbs.db
 *.tlh
 *.lib
 [Tt]est[Rr]esult*
+#ignore Nuget packages, but keep repositories.config
+packages/
+!packages/repositories.config
