@@ -16,6 +16,7 @@ namespace Tests
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfTwoNumbers")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfMultipleNumbers")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "LineBreakNumberSeparators")]
+        [TestCaseSource(typeof (StringCalculatorTestCases), "CustomNumberSeparators")]
         public void Add_ReturnsExpectedResults(string input, int expectedOutput)
         {
             Assert.That(StringCalculator.Add(input), Is.EqualTo(expectedOutput));

@@ -65,5 +65,14 @@ namespace Tests
                 yield return new TestCaseData("2187243\n-7823478\n9213", -5627022);
             }
         }
+
+        public static IEnumerable<TestCaseData> CustomNumberSeparators
+        {
+            get
+            {
+                yield return new TestCaseData("//;\n1;2", 3);
+                yield return new TestCaseData("//{\n12{18{-9", 21);
+            }
+        }
     }
 }
