@@ -68,6 +68,7 @@ namespace Tests
                 yield return new TestCaseData("//[<=>]\n43<=>6<=>78<=>98<=>1005", 225);
                 yield return new TestCaseData("//[*][&][^]\n43&6*77^98*1005", 224);
                 yield return new TestCaseData("//[p][pp][oo]\n43pp6oo77oo98p5", 229);
+                yield return new TestCaseData("//[p][pp][op]\n43pp6p77op98p5", 229);
             }
         }
 
