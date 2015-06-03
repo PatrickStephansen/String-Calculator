@@ -25,8 +25,15 @@ namespace Calculators
             {
                 delimiters = new[] {",","\n"};
             }
-            return numbers.Split(delimiters, StringSplitOptions.None)
-                          .Sum(number => int.Parse(number));
+            var numberList = numbers.Split(delimiters, StringSplitOptions.None)
+                                    .Select(int.Parse).ToArray();
+            var negativeNumbers = numberList.Where(number => number < 0);
+            if (negativeNumbers.Any())
+            {
+                throw new ArgumentException(string.Format("Negative numbers not allowed: {0}",
+                                                          string.Join(", ", negativeNumbers)));
+            }
+            return numberList.Sum();
         }
     }
 }
