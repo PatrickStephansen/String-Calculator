@@ -19,7 +19,7 @@ namespace Tests
                 yield return new TestCaseData("2", 2);
                 yield return new TestCaseData("9", 9);
                 yield return new TestCaseData("10", 10);
-                yield return new TestCaseData("2147483647", 2147483647);
+                yield return new TestCaseData("2147483647", 0);
             }
         }
 
@@ -33,7 +33,7 @@ namespace Tests
                 yield return new TestCaseData("1,1", 2);
                 yield return new TestCaseData("9,1", 10);
                 yield return new TestCaseData("2,1", 3);
-                yield return new TestCaseData("8721387,23723", 8745110);
+                yield return new TestCaseData("8721387,23723", 0);
             }
         }
 
@@ -41,10 +41,10 @@ namespace Tests
         {
             get
             {
-                yield return new TestCaseData("8721387,23723,0", 8745110);
+                yield return new TestCaseData("8721387,23723,0", 0);
                 yield return new TestCaseData("0,0,0,0,0,0,0,0", 0);
                 yield return new TestCaseData("1,2,4,25,8,25,9", 74);
-                yield return new TestCaseData("213,23,4342,543,546,567,65,867,878,989,345,54,73,423,42", 9970);
+                yield return new TestCaseData("213,23,4342,543,546,567,65,867,878,989,345,54,73,423,42", 5628);
             }
         }
 
@@ -54,7 +54,7 @@ namespace Tests
             {
                 yield return new TestCaseData("0,0\n0,0,0,0,0,0", 0);
                 yield return new TestCaseData("1,2,4,25,8\n25,9", 74);
-                yield return new TestCaseData("2187243\n7823478\n9213", 10019934);
+                yield return new TestCaseData("218\n78\n921", 1217);
             }
         }
 
@@ -65,7 +65,18 @@ namespace Tests
                 yield return new TestCaseData("//;\n1;2", 3);
                 yield return new TestCaseData("//-\n1-2-4", 7);
                 yield return new TestCaseData("//::\n43::6::78", 127);
-                yield return new TestCaseData("//<=>\n43<=>6<=>78<=>98", 225);
+                yield return new TestCaseData("//<=>\n43<=>6<=>78<=>98<=>1005", 225);
+            }
+        }
+
+        public static IEnumerable<TestCaseData> NumbersGreaterThan1000
+        {
+            get
+            {
+                // Some of these cases are covered elsewhere when they overlap with other cases
+                yield return new TestCaseData("2,1000", 1002);
+                yield return new TestCaseData("2,1001", 2);
+                yield return new TestCaseData("1001,1000", 1000);
             }
         }
 

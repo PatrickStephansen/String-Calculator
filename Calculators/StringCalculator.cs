@@ -8,6 +8,8 @@ namespace Calculators
     {
         private const string DelimiterStartIndicator = "//";
         private const string DelimiterEndIndicator = "\n";
+        // Numbers higher than this are ignored
+        private const int MaximumAllowedNumber = 1000;
 
         public static int Add(string numbers)
         {
@@ -33,7 +35,7 @@ namespace Calculators
                 throw new ArgumentException(string.Format("Negative numbers not allowed: {0}",
                                                           string.Join(", ", negativeNumbers)));
             }
-            return numberList.Sum();
+            return numberList.Where(n => n <= MaximumAllowedNumber).Sum();
         }
     }
 }

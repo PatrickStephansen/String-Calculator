@@ -13,6 +13,7 @@ namespace Tests
         [TestCaseSource(typeof (StringCalculatorTestCases), "AdditionOfMultipleNumbers")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "LineBreakNumberSeparators")]
         [TestCaseSource(typeof (StringCalculatorTestCases), "CustomNumberSeparators")]
+        [TestCaseSource(typeof (StringCalculatorTestCases), "NumbersGreaterThan1000")]
         public void Add_ReturnsExpectedResults(string input, int expectedOutput)
         {
             Assert.That(StringCalculator.Add(input), Is.EqualTo(expectedOutput));
@@ -23,8 +24,9 @@ namespace Tests
                                                  Type expectedExceptionType,
                                                  string expectedExceptionMessage)
         {
-            Assert.That(Assert.Throws(expectedExceptionType, () => StringCalculator.Add(input)),
-                        Has.Message.Contains(expectedExceptionMessage));
+            Assert.That(
+                Assert.Throws(expectedExceptionType, () => StringCalculator.Add(input)),
+                Has.Message.Contains(expectedExceptionMessage));
         }
     }
 }
