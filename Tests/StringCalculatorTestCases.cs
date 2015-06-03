@@ -62,10 +62,12 @@ namespace Tests
         {
             get
             {
-                yield return new TestCaseData("//;\n1;2", 3);
-                yield return new TestCaseData("//-\n1-2-4", 7);
-                yield return new TestCaseData("//::\n43::6::78", 127);
-                yield return new TestCaseData("//<=>\n43<=>6<=>78<=>98<=>1005", 225);
+                yield return new TestCaseData("//[;]\n1;2", 3);
+                yield return new TestCaseData("//[-]\n1-2-4", 7);
+                yield return new TestCaseData("//[::]\n43::6::78", 127);
+                yield return new TestCaseData("//[<=>]\n43<=>6<=>78<=>98<=>1005", 225);
+                yield return new TestCaseData("//[*][&][^]\n43&6*77^98*1005", 224);
+                yield return new TestCaseData("//[p][pp][oo]\n43pp6oo77oo98p5", 229);
             }
         }
 
