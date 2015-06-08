@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using NUnit.Framework;
 
@@ -62,8 +62,12 @@ namespace Tests
         {
             get
             {
-                yield return new TestCaseData("//[;]\n1;2", 3);
+                // [,] and any digits are not allowed in delimiters
+                yield return new TestCaseData("//;\n1;2", 3);
+                yield return new TestCaseData("//╫\n1╫2", 3);
                 yield return new TestCaseData("//[-]\n1-2-4", 7);
+                yield return new TestCaseData("//[,][\n]\n2\n3,4", 9);
+                yield return new TestCaseData("//[\n][//]\n1//2\n4", 7);
                 yield return new TestCaseData("//[::]\n43::6::78", 127);
                 yield return new TestCaseData("//[<=>]\n43<=>6<=>78<=>98<=>1005", 225);
                 yield return new TestCaseData("//[*][&][^]\n43&6*77^98*1005", 224);
